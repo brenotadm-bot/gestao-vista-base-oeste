@@ -1,47 +1,34 @@
-# BASEOESTE V3 — ORGANIZADO
+# BASEOESTE V5 COMPLETA
 
-## Estrutura
-- index.html
-- style.css
-- app.js
-- config.js
-- dados-fallback.json
-- imagens/
-  - sidebar.png
+Versão revisada do painel para TV.
 
-## Trocar a arte lateral
-1. Crie uma nova imagem vertical.
-2. Salve como `sidebar.png`.
-3. No GitHub, abra a pasta `imagens`.
-4. Envie a nova `sidebar.png` substituindo a antiga.
-5. Faça o Commit.
-6. O Netlify atualiza automaticamente.
-
-Você NÃO precisa editar HTML, CSS ou JavaScript para trocar a arte.
-
-## Google Sheets
-Já configurado:
+## Já configurado
+Google Sheets:
 https://docs.google.com/spreadsheets/d/1uU1T7FggKgG26VgpQwHn4jCtRMRYQdmrTVXlse9VnPI/edit
 
-Compartilhamento necessário:
-**Qualquer pessoa com o link → Leitor**
+Abas:
+- Resumo
+- Ocorrencias
+- Viaturas
+- Condutores
+- Municipios
+- Avisos
 
-## Atualização
-- Dados: 2 minutos
-- Troca de tela: 25 segundos
+## Correções desta versão
+- Aba Resumo funciona mesmo com título e linhas vazias antes de `Indicador | Valor`.
+- Quantidade de linhas dinâmica para ocorrências, condutores, viaturas e municípios.
+- Condutores mudam automaticamente para 1, 2 ou 3 colunas.
+- Clima automático para Barreiras-BA.
+- Atualização do Google Sheets a cada 2 minutos.
+- Troca de telas a cada 25 segundos.
+- Arte lateral em `imagens/sidebar.png`.
 
-## Cores e arquivos de identidade
-Se quiser alterar mais tarde, edite somente `config.js`:
-- sidebarImage
-- logoCBMBA
-- logo7BBM
-- colors
+## Para atualizar no GitHub
+Substitua os arquivos do repositório pelos arquivos desta pasta e faça Commit Changes.
+O Netlify publica automaticamente.
 
-## Importante
-A versão atual usa a arte em `imagens/sidebar.png` como barra lateral.
+## Para trocar somente a arte lateral no futuro
+Substitua:
+`imagens/sidebar.png`
 
-
-## V4 — quantidade de linhas adaptativa
-- Condutores: até 10 registros = 1 coluna; 11–20 = 2 colunas; acima de 20 = 3 colunas.
-- Ocorrências: tabela reduz automaticamente espaçamento e fonte conforme a quantidade.
-- Não é necessário alterar código quando adicionar ou remover linhas no Google Sheets.
+Não é necessário alterar código.
