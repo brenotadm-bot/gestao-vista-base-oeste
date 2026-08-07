@@ -193,7 +193,7 @@ async function loadWeather(){
   }
 }
 
-aasync function loadData(){
+async function loadData(){
   try{
     const entries = await Promise.all(
       PAINEL_CONFIG.sheets.map(async tab => [tab, await loadSheet(tab)])
