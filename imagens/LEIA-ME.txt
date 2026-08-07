@@ -1,0 +1,12 @@
+ARQUIVOS DE IDENTIDADE VISUAL
+
+sidebar.png = arte lateral principal (já incluída)
+
+Arquivos opcionais para futuras versões:
+logo-cbmba.png
+logo-7bbm.png
+fundo1.jpg
+fundo2.jpg
+fundo3.jpg
+
+Para trocar a barra lateral, substitua somente sidebar.png.

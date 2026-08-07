@@ -1,0 +1,29 @@
+PAINEL BASE OESTE — PRONTO PARA NETLIFY DROP
+
+1. Extraia esta pasta.
+2. Acesse https://app.netlify.com/drop
+3. Arraste A PASTA BASEOESTE_PRONTO_TV inteira para a área de upload.
+4. O Netlify criará um link imediatamente.
+5. Abra o link na TV e use F11 para tela cheia.
+
+GOOGLE SHEETS JÁ CONFIGURADO:
+https://docs.google.com/spreadsheets/d/1uU1T7FggKgG26VgpQwHn4jCtRMRYQdmrTVXlse9VnPI/edit
+
+IMPORTANTE:
+No Google Sheets, use:
+Compartilhar > Acesso geral > Qualquer pessoa com o link > Leitor
+
+ABAS ESPERADAS:
+Resumo
+Ocorrencias
+Viaturas
+Condutores
+Municipios
+Avisos
+
+ATUALIZAÇÃO:
+Dados: 2 minutos
+Troca de tela: 25 segundos
+
+Se o Google Sheets ainda não estiver público, o painel NÃO fica vazio:
+ele mostra dados de contingência e um aviso na tela.

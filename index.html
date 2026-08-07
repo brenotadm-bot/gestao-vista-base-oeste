@@ -1,0 +1,234 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#111214">
+  <title>Gestão à Vista — Operação Florestal — Base Oeste</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="app">
+  <aside class="sidebar">
+    <div class="unit">
+      <div class="unit-badge">7º</div>
+      <div class="unit-text">
+        <strong>7º BBM</strong>
+        <small>CORPO DE BOMBEIROS MILITAR DA BAHIA</small>
+      </div>
+    </div>
+
+    <div class="hero">
+      <div class="hero-glow"></div>
+      <div class="hero-fire">🔥</div>
+      <div class="hero-heli">✈</div>
+      <div class="hero-title">OPERAÇÃO<br>FLORESTAL</div>
+    </div>
+
+    <div class="side-footer">
+      <div class="crest">1894</div>
+      <div class="motto">
+        UNIDOS PELA VIDA,<br>
+        <b>PROTEGEMOS A NATUREZA.</b>
+      </div>
+    </div>
+  </aside>
+
+  <section class="main-shell">
+    <header class="topbar">
+      <div class="top-title">
+        <span class="flame">♨</span>
+        <div>
+          <strong>GESTÃO À VISTA — OPERAÇÃO FLORESTAL — BASE OESTE</strong>
+          <small>PAINEL OPERACIONAL • 7º BBM</small>
+        </div>
+      </div>
+
+      <div class="clock-area">
+        <div class="clock" id="clock">--:--:--</div>
+        <div class="update">
+          ÚLTIMA ATUALIZAÇÃO
+          <b id="lastUpdate">--:--</b>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <!-- TELA 1 -->
+      <section class="screen active" data-screen="0">
+        <div class="screen-grid overview-grid">
+          <article class="panel occ-panel">
+            <div class="panel-title">GRÁFICO DE OCORRÊNCIAS</div>
+            <div class="panel-content occ-content">
+              <div class="occ-left">
+                <div class="subhead">SITUAÇÃO DAS OCORRÊNCIAS</div>
+                <div id="occSummary"></div>
+              </div>
+              <div class="occ-right">
+                <div class="subhead">OCORRÊNCIAS POR MUNICÍPIO</div>
+                <div id="occBars"></div>
+              </div>
+            </div>
+          </article>
+
+          <article class="panel efetivo-panel">
+            <div class="panel-title">GESTÃO DO EFETIVO</div>
+            <div class="panel-content" id="effectiveGrid"></div>
+          </article>
+
+          <article class="panel atuacao-panel">
+            <div class="panel-title">GESTÃO DE ATUAÇÃO</div>
+            <div class="panel-content" id="atuacaoCards"></div>
+          </article>
+
+          <article class="panel frota-panel">
+            <div class="panel-title">GESTÃO DA FROTA</div>
+            <div class="panel-content" id="fleetKpis"></div>
+          </article>
+
+          <article class="panel clima-panel">
+            <div class="panel-title">CONDIÇÕES AMBIENTAIS</div>
+            <div class="panel-content climate-grid">
+              <div class="climate-item"><span>🌡</span><small>TEMPERATURA</small><b id="temp">—</b><em>MÁXIMA</em></div>
+              <div class="climate-item"><span>💧</span><small>UMIDADE RELATIVA</small><b id="humidity">—</b><em>ATUAL</em></div>
+              <div class="climate-item"><span>≋</span><small>VENTO</small><b id="wind">—</b><em>KM/H</em></div>
+              <div class="climate-item"><span>◔</span><small>ÍNDICE DE RISCO</small><b id="risk">—</b><em>INCÊNDIO</em></div>
+            </div>
+          </article>
+
+          <article class="panel avisos-panel">
+            <div class="panel-title">AVISOS E INFORMAÇÕES</div>
+            <div class="panel-content" id="avisos"></div>
+          </article>
+        </div>
+      </section>
+
+      <!-- TELA 2 -->
+      <section class="screen" data-screen="1">
+        <div class="page-title">ÁREA DE ATUAÇÃO</div>
+        <div class="screen-grid area-grid">
+          <article class="panel area-map-panel">
+            <div class="panel-title">MUNICÍPIOS / ÁREAS OPERACIONAIS</div>
+            <div class="panel-content map-board">
+              <div class="map-watermark">BASE OESTE</div>
+              <div id="municipiosMap" class="city-grid"></div>
+            </div>
+          </article>
+
+          <article class="panel area-table-panel">
+            <div class="panel-title">SITUAÇÃO POR ÁREA</div>
+            <div class="panel-content table-scroll">
+              <table>
+                <thead><tr><th>ÁREA</th><th>SITUAÇÃO</th><th>VIATURA</th></tr></thead>
+                <tbody id="municipiosTable"></tbody>
+              </table>
+            </div>
+          </article>
+
+          <article class="panel area-kpi-panel">
+            <div class="panel-title">RESUMO OPERACIONAL</div>
+            <div class="panel-content" id="areaKpis"></div>
+          </article>
+        </div>
+      </section>
+
+      <!-- TELA 3 -->
+      <section class="screen" data-screen="2">
+        <div class="page-title">DISTRIBUIÇÃO DAS VIATURAS</div>
+        <article class="panel full-panel">
+          <div class="panel-title">LOCALIZAÇÃO E SITUAÇÃO DA FROTA</div>
+          <div class="panel-content" id="fleetColumns"></div>
+        </article>
+      </section>
+
+      <!-- TELA 4 -->
+      <section class="screen" data-screen="3">
+        <div class="page-title">CONDUTORES E VIATURAS</div>
+        <article class="panel full-panel">
+          <div class="panel-title">GESTÃO DOS CONDUTORES</div>
+          <div class="panel-content table-scroll">
+            <table class="drivers-table">
+              <thead><tr><th>CONDUTOR</th><th>VIATURA</th><th>LOCAL</th><th>OBSERVAÇÃO</th></tr></thead>
+              <tbody id="driversTable"></tbody>
+            </table>
+          </div>
+        </article>
+      </section>
+
+      <!-- TELA 5 -->
+      <section class="screen" data-screen="4">
+        <div class="page-title">OCORRÊNCIAS E EMPREGO OPERACIONAL</div>
+        <div class="screen-grid occ-detail-grid">
+          <article class="panel">
+            <div class="panel-title">OCORRÊNCIAS CADASTRADAS</div>
+            <div class="panel-content table-scroll">
+              <table>
+                <thead><tr><th>LOCAL</th><th>SITUAÇÃO</th><th>TIPO</th><th>VIATURA</th><th>CONDUTOR</th></tr></thead>
+                <tbody id="occTable"></tbody>
+              </table>
+            </div>
+          </article>
+
+          <article class="panel">
+            <div class="panel-title">INDICADORES</div>
+            <div class="panel-content" id="occKpis"></div>
+          </article>
+        </div>
+      </section>
+
+      <!-- TELA 6 -->
+      <section class="screen" data-screen="5">
+        <div class="page-title">SIPAM • BARREIRAS / OESTE DA BAHIA</div>
+        <div class="screen-grid sipam-grid">
+          <article class="panel sipam-map">
+            <div class="panel-title">PAINEL DO FOGO</div>
+            <div class="panel-content sipam-placeholder">
+              <div class="radar">◎</div>
+              <b>ÁREA RESERVADA PARA EVENTOS DE FOGO</b>
+              <p>A integração oficial do SIPAM será adicionada nesta área quando houver endpoint/credencial disponível.</p>
+            </div>
+          </article>
+
+          <article class="panel sipam-stats">
+            <div class="panel-title">DADOS AUTOMÁTICOS</div>
+            <div class="panel-content">
+              <div class="sipam-cards">
+                <div><small>EVENTOS DE FOGO</small><b>—</b></div>
+                <div><small>FRENTES 24H</small><b>—</b></div>
+                <div><small>PRIORIDADE</small><b>—</b></div>
+                <div><small>STATUS</small><b>OFF</b></div>
+              </div>
+            </div>
+          </article>
+
+          <article class="panel sipam-info">
+            <div class="panel-title">INFORMAÇÕES</div>
+            <div class="panel-content sipam-info-text">
+              <p>Google Sheets: atualização automática a cada 2 minutos.</p>
+              <p>Troca automática entre as telas a cada 25 segundos.</p>
+              <p>Filtro futuro do SIPAM: Barreiras e municípios de interesse da Base Oeste.</p>
+            </div>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div>
+        <span class="legend-dot red"></span> EM ATUAÇÃO
+        <span class="legend-dot yellow"></span> FINALIZADA
+        <span class="legend-dot green"></span> MONITORAMENTO
+      </div>
+      <div>
+        <b id="pager">TELA 1 / 6</b>
+        <span class="sep">•</span>
+        DADOS ATUALIZADOS A CADA 2 MINUTOS
+      </div>
+    </footer>
+  </section>
+</div>
+
+<script src="config.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

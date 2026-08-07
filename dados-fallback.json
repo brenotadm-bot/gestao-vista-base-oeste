@@ -1,0 +1,324 @@
+{
+  "Resumo": [
+    {
+      "Indicador": "Efetivo no combate",
+      "Valor": "38"
+    },
+    {
+      "Indicador": "GCIFs",
+      "Valor": "10"
+    },
+    {
+      "Indicador": "Efetivo na base",
+      "Valor": "11"
+    },
+    {
+      "Indicador": "Viaturas no terreno",
+      "Valor": "10"
+    },
+    {
+      "Indicador": "Viaturas baixadas",
+      "Valor": "3"
+    },
+    {
+      "Indicador": "Viaturas na base",
+      "Valor": "3"
+    },
+    {
+      "Indicador": "Combate",
+      "Valor": "10"
+    },
+    {
+      "Indicador": "Monitoramento",
+      "Valor": "10"
+    },
+    {
+      "Indicador": "Prevenção",
+      "Valor": "10"
+    }
+  ],
+  "Ocorrencias": [
+    {
+      "Município/Local": "Santa Rita de Cássia",
+      "Situação": "Em atuação",
+      "Tipo": "Combate",
+      "Viatura": "AR-0110",
+      "Condutor": "Souza",
+      "Observação": ""
+    },
+    {
+      "Município/Local": "LEM",
+      "Situação": "Finalizada",
+      "Tipo": "Monitoramento",
+      "Viatura": "AR-1411",
+      "Condutor": "Ledo",
+      "Observação": ""
+    },
+    {
+      "Município/Local": "Riachão das Neves",
+      "Situação": "Em atuação",
+      "Tipo": "Combate",
+      "Viatura": "AR-1624",
+      "Condutor": "João Lessa",
+      "Observação": ""
+    },
+    {
+      "Município/Local": "Barreiras",
+      "Situação": "Monitoramento",
+      "Tipo": "Monitoramento",
+      "Viatura": "AR-0210",
+      "Condutor": "Alexandre",
+      "Observação": ""
+    }
+  ],
+  "Viaturas": [
+    {
+      "Viatura": "AR-0110",
+      "Local": "Riachão",
+      "Status": "Em operação",
+      "Condutor": "Souza",
+      "Observação": ""
+    },
+    {
+      "Viatura": "AR-1121",
+      "Local": "Riachão",
+      "Status": "Em operação",
+      "Condutor": "Mascarenhas",
+      "Observação": ""
+    },
+    {
+      "Viatura": "AR-1316",
+      "Local": "Riachão",
+      "Status": "Em operação",
+      "Condutor": "Hiague",
+      "Observação": ""
+    },
+    {
+      "Viatura": "AR-2015",
+      "Local": "Riachão",
+      "Status": "Em operação",
+      "Condutor": "Douglas",
+      "Observação": ""
+    },
+    {
+      "Viatura": "AR-1022",
+      "Local": "Riachão",
+      "Status": "Em operação",
+      "Condutor": "CB Carvalho",
+      "Observação": ""
+    },
+    {
+      "Viatura": "AR-1624",
+      "Local": "Riachão",
+      "Status": "Em operação",
+      "Condutor": "João Lessa",
+      "Observação": ""
+    },
+    {
+      "Viatura": "AR-0227",
+      "Local": "Riachão",
+      "Status": "Em operação",
+      "Condutor": "Wesley",
+      "Observação": ""
+    },
+    {
+      "Viatura": "AR-0210",
+      "Local": "Barreiras",
+      "Status": "Em operação",
+      "Condutor": "Alexandre",
+      "Observação": ""
+    },
+    {
+      "Viatura": "AR-1411",
+      "Local": "LEM",
+      "Status": "Em operação",
+      "Condutor": "Ledo",
+      "Observação": ""
+    },
+    {
+      "Viatura": "AR-1207",
+      "Local": "Base",
+      "Status": "Na base",
+      "Condutor": "Rigiere",
+      "Observação": ""
+    },
+    {
+      "Viatura": "AR-0340",
+      "Local": "Base",
+      "Status": "Na base",
+      "Condutor": "Saulo",
+      "Observação": "Sem capota"
+    },
+    {
+      "Viatura": "AR-1726",
+      "Local": "Base",
+      "Status": "Baixada",
+      "Condutor": "",
+      "Observação": "Tirar a capota"
+    }
+  ],
+  "Condutores": [
+    {
+      "Condutor": "Alexandre",
+      "Viatura": "AR-0210",
+      "Local": "Barreiras",
+      "Observação": "Sem capota"
+    },
+    {
+      "Condutor": "Wesley",
+      "Viatura": "AR-0227",
+      "Local": "Riachão",
+      "Observação": ""
+    },
+    {
+      "Condutor": "Mascarenhas",
+      "Viatura": "AR-1121",
+      "Local": "Riachão",
+      "Observação": ""
+    },
+    {
+      "Condutor": "João Lessa",
+      "Viatura": "AR-1624",
+      "Local": "Riachão",
+      "Observação": ""
+    },
+    {
+      "Condutor": "Souza",
+      "Viatura": "AR-0110",
+      "Local": "Riachão",
+      "Observação": ""
+    },
+    {
+      "Condutor": "Rigiere",
+      "Viatura": "AR-1207",
+      "Local": "Base",
+      "Observação": ""
+    },
+    {
+      "Condutor": "Hiague",
+      "Viatura": "AR-1316",
+      "Local": "Riachão",
+      "Observação": ""
+    },
+    {
+      "Condutor": "CB Carvalho",
+      "Viatura": "AR-1022",
+      "Local": "Riachão",
+      "Observação": ""
+    },
+    {
+      "Condutor": "Douglas",
+      "Viatura": "AR-2015",
+      "Local": "Riachão",
+      "Observação": ""
+    },
+    {
+      "Condutor": "Saulo",
+      "Viatura": "AR-0340",
+      "Local": "Base",
+      "Observação": "Sem capota"
+    },
+    {
+      "Condutor": "Ledo",
+      "Viatura": "AR-1411",
+      "Local": "LEM",
+      "Observação": ""
+    }
+  ],
+  "Municipios": [
+    {
+      "Município/Área": "Barreiras / Rio Grande",
+      "Pode atuar?": "Sim",
+      "Situação atual": "Pronto emprego",
+      "Viatura": "",
+      "Observação": ""
+    },
+    {
+      "Município/Área": "LEM",
+      "Pode atuar?": "Sim",
+      "Situação atual": "Monitoramento",
+      "Viatura": "AR-1411",
+      "Observação": ""
+    },
+    {
+      "Município/Área": "Bom Jesus da Lapa",
+      "Pode atuar?": "Sim",
+      "Situação atual": "Pronto emprego",
+      "Viatura": "",
+      "Observação": ""
+    },
+    {
+      "Município/Área": "Buritirama",
+      "Pode atuar?": "Sim",
+      "Situação atual": "Pronto emprego",
+      "Viatura": "",
+      "Observação": ""
+    },
+    {
+      "Município/Área": "Santa Rita de Cássia",
+      "Pode atuar?": "Sim",
+      "Situação atual": "Combate",
+      "Viatura": "AR-0110",
+      "Observação": ""
+    },
+    {
+      "Município/Área": "São Desidério / Roda Velha",
+      "Pode atuar?": "Sim",
+      "Situação atual": "Monitoramento",
+      "Viatura": "AR-1022",
+      "Observação": ""
+    },
+    {
+      "Município/Área": "Barra",
+      "Pode atuar?": "Sim",
+      "Situação atual": "Pronto emprego",
+      "Viatura": "",
+      "Observação": ""
+    },
+    {
+      "Município/Área": "Wanderley",
+      "Pode atuar?": "Sim",
+      "Situação atual": "Pronto emprego",
+      "Viatura": "",
+      "Observação": ""
+    },
+    {
+      "Município/Área": "Cotegipe",
+      "Pode atuar?": "Sim",
+      "Situação atual": "Pronto emprego",
+      "Viatura": "",
+      "Observação": ""
+    },
+    {
+      "Município/Área": "Riachão das Neves",
+      "Pode atuar?": "Sim",
+      "Situação atual": "Combate",
+      "Viatura": "AR-1624",
+      "Observação": ""
+    },
+    {
+      "Município/Área": "Morpará",
+      "Pode atuar?": "Sim",
+      "Situação atual": "Pronto emprego",
+      "Viatura": "",
+      "Observação": ""
+    }
+  ],
+  "Avisos": [
+    {
+      "Ativo": "Sim",
+      "Título": "Condições ambientais",
+      "Mensagem": "Atenção ao aumento da temperatura e baixa umidade."
+    },
+    {
+      "Ativo": "Sim",
+      "Título": "Hidratação",
+      "Mensagem": "Reforçar hidratação das equipes."
+    },
+    {
+      "Ativo": "Sim",
+      "Título": "Emergência",
+      "Mensagem": "Em caso de incêndio, ligar 193."
+    }
+  ]
+}
