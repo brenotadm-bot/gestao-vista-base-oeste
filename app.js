@@ -200,8 +200,14 @@ async function loadData(){
     );
     data = Object.fromEntries(entries);
 
-    render();
-    await loadWeather();
+console.log("Resumo", data.Resumo);
+console.log("Ocorrencias", data.Ocorrencias);
+console.log("Viaturas", data.Viaturas);
+console.log("Condutores", data.Condutores);
+console.log("Municipios", data.Municipios);
+
+render();
+await loadWeather();
 
     $("#lastUpdate").textContent =
       new Date().toLocaleTimeString("pt-BR",{hour:"2-digit",minute:"2-digit"});
