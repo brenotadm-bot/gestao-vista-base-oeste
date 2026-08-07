@@ -118,11 +118,14 @@ function clearError(){
 }
 
 function summary(name){
-  const target = normalizeKey(name);
-  const row = (data.Resumo || []).find(r => normalizeKey(r.Indicador) === target);
-  return row ? String(r.Valor ?? "").trim() || "—" : "—";
-}
+    const target = normalizeKey(name);
 
+    const row = (data.Resumo || []).find(r =>
+        normalizeKey(r.Indicador) === target
+    );
+
+    return row ? String(row.Valor ?? "").trim() || "—" : "—";
+}
 function statusClass(s){
   s = normalizeKey(s);
   if(s.includes("combate") || s.includes("atuacao")) return "combate";
