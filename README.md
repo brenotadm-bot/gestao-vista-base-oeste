@@ -39,3 +39,9 @@ Se quiser alterar mais tarde, edite somente `config.js`:
 
 ## Importante
 A versão atual usa a arte em `imagens/sidebar.png` como barra lateral.
+
+
+## V4 — quantidade de linhas adaptativa
+- Condutores: até 10 registros = 1 coluna; 11–20 = 2 colunas; acima de 20 = 3 colunas.
+- Ocorrências: tabela reduz automaticamente espaçamento e fonte conforme a quantidade.
+- Não é necessário alterar código quando adicionar ou remover linhas no Google Sheets.

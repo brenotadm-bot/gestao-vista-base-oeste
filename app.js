@@ -225,13 +225,27 @@ function render(){
         </div>`).join("")}
     </div>`).join("");
 
-  $("#driversTable").innerHTML = drivers.map(d => `
-    <tr>
-      <td><b>${esc(d.Condutor)}</b></td>
-      <td>${esc(d.Viatura)}</td>
-      <td>${esc(d.Local)}</td>
-      <td>${esc(d.Observação || "")}</td>
-    </tr>`).join("");
+  // CONDUTORES: layout se adapta automaticamente à quantidade de linhas.
+  const driversBox = $("#driversAdaptive");
+  $("#driversCount").textContent = `(${drivers.length})`;
+
+  let driverCols = 1;
+  if (drivers.length > 10) driverCols = 2;
+  if (drivers.length > 20) driverCols = 3;
+
+  driversBox.style.setProperty("--driver-cols", driverCols);
+
+  driversBox.innerHTML = drivers.map(d => `
+    <div class="driver-card">
+      <div class="driver-name">${esc(d.Condutor)}</div>
+      <div class="driver-vehicle">${esc(d.Viatura)}</div>
+      <div class="driver-local">${esc(d.Local)}</div>
+      <div class="driver-note">${esc(d.Observação || "")}</div>
+    </div>`).join("");
+
+  // Ajuste fino: quanto mais registros, mais compacto fica sem cortar dados.
+  driversBox.classList.toggle("compact", drivers.length > 10);
+  driversBox.classList.toggle("ultra", drivers.length > 20);
 
   $("#occTable").innerHTML = occ.map(o => `
     <tr>
@@ -241,6 +255,11 @@ function render(){
       <td>${esc(o.Viatura || "—")}</td>
       <td>${esc(o.Condutor || "—")}</td>
     </tr>`).join("");
+  const occTable = $("#occTable")?.closest("table");
+  if(occTable){
+    occTable.classList.toggle("compact-table", occ.length > 10);
+    occTable.classList.toggle("ultra-table", occ.length > 16);
+  }
 
   $("#occKpis").innerHTML = [
     ["TOTAL",occ.length],
