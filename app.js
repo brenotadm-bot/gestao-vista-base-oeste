@@ -193,20 +193,24 @@ async function loadWeather(){
   }
 }
 
-async function loadData(){
+aasync function loadData(){
   try{
     const entries = await Promise.all(
       PAINEL_CONFIG.sheets.map(async tab => [tab, await loadSheet(tab)])
     );
+
     data = Object.fromEntries(entries);
 
-console.log("Resumo", data.Resumo);
-console.log("Ocorrencias", data.Ocorrencias);
-console.log("Viaturas", data.Viaturas);
-console.log("Condutores", data.Condutores);
-console.log("Municipios", data.Municipios);
+    console.log("Resumo", data.Resumo);
+    console.log("Primeiro resumo:", data.Resumo[0]);
+    console.log("Chaves:", Object.keys(data.Resumo[0]));
 
-render();
+    console.log("Ocorrencias", data.Ocorrencias);
+    console.log("Viaturas", data.Viaturas);
+    console.log("Condutores", data.Condutores);
+    console.log("Municipios", data.Municipios);
+
+    render();
 await loadWeather();
 
     $("#lastUpdate").textContent =
