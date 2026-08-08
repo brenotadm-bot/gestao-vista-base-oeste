@@ -336,7 +336,7 @@ function render(){
     ["TOTAL DE ÁREAS",munis.length]
   ].map(x => `<div class="area-kpi"><small>${x[0]}</small><b>${x[1]}</b></div>`).join("");
 
-  // VIATURAS — distribuição compacta e dinâmica
+// VIATURAS — distribuição compacta e dinâmica
 const groups = {};
 
 vehicles.forEach(v => {
@@ -355,13 +355,12 @@ const orderedGroups = Object.entries(groups)
 
 $("#fleetColumns").innerHTML = orderedGroups.map(([loc,vs], index) => `
   <div class="fleet-col ${index === 0 && vs.length >= 5 ? "fleet-col-large" : ""}">
-  <div class="fleet-col ${vs.length >= 5 ? "fleet-col-large" : ""}">
-    
+
     <h3>${esc(loc).toUpperCase()} (${vs.length})</h3>
 
     ${vs.map(v => `
       <div class="vehicle-card ${vehicleClass(v.Status)}">
-        
+
         <b>${esc(v.Viatura)}</b>
 
         <small>
@@ -379,7 +378,7 @@ $("#fleetColumns").innerHTML = orderedGroups.map(([loc,vs], index) => `
   </div>
 `).join("");
 
-  // CONDUTORES — adaptativo
+// CONDUTORES — adaptativo
   const driversBox = $("#driversAdaptive");
   if(driversBox){
     const countEl = $("#driversCount");
