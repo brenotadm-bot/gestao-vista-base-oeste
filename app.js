@@ -336,20 +336,47 @@ function render(){
     ["TOTAL DE ÁREAS",munis.length]
   ].map(x => `<div class="area-kpi"><small>${x[0]}</small><b>${x[1]}</b></div>`).join("");
 
-  // VIATURAS — quantidade totalmente dinâmica
-  const groups = {};
-  vehicles.forEach(v => (groups[v.Local || "Sem local"] ??= []).push(v));
+  // VIATURAS — distribuição compacta e dinâmica
+const groups = {};
 
-  $("#fleetColumns").innerHTML = Object.entries(groups).map(([loc,vs]) => `
-    <div class="fleet-col">
-      <h3>${esc(loc).toUpperCase()} (${vs.length})</h3>
-      ${vs.map(v => `
-        <div class="vehicle-card ${vehicleClass(v.Status)}">
-          <b>${esc(v.Viatura)}</b>
-          <small>${esc(v.Status)}${v.Condutor ? " • "+esc(v.Condutor) : ""}</small>
-          ${v.Observação ? `<small>${esc(v.Observação)}</small>` : ""}
-        </div>`).join("")}
-    </div>`).join("");
+vehicles.forEach(v => {
+  const local = v.Local || "Sem local";
+
+  if(!groups[local]){
+    groups[local] = [];
+  }
+
+  groups[local].push(v);
+});
+
+// Ordena os locais colocando primeiro quem possui mais viaturas
+const orderedGroups = Object.entries(groups)
+  .sort((a,b) => b[1].length - a[1].length);
+
+$("#fleetColumns").innerHTML = orderedGroups.map(([loc,vs]) => `
+  <div class="fleet-col ${vs.length >= 5 ? "fleet-col-large" : ""}">
+    
+    <h3>${esc(loc).toUpperCase()} (${vs.length})</h3>
+
+    ${vs.map(v => `
+      <div class="vehicle-card ${vehicleClass(v.Status)}">
+        
+        <b>${esc(v.Viatura)}</b>
+
+        <small>
+          ${esc(v.Status)}
+          ${v.Condutor ? " • " + esc(v.Condutor) : ""}
+        </small>
+
+        ${v.Observação ? `
+          <small>${esc(v.Observação)}</small>
+        ` : ""}
+
+      </div>
+    `).join("")}
+
+  </div>
+`).join("");
 
   // CONDUTORES — adaptativo
   const driversBox = $("#driversAdaptive");
