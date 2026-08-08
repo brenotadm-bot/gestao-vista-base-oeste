@@ -118,14 +118,11 @@ function clearError(){
 }
 
 function summary(name){
-    const target = normalizeKey(name);
-
-    const row = (data.Resumo || []).find(r =>
-        normalizeKey(r.Indicador) === target
-    );
-
-    return row ? String(row.Valor ?? "").trim() || "—" : "—";
+  const target = normalizeKey(name);
+  const row = (data.Resumo || []).find(r => normalizeKey(r.Indicador) === target);
+  return row ? String(r.Valor ?? "").trim() || "—" : "—";
 }
+
 function statusClass(s){
   s = normalizeKey(s);
   if(s.includes("combate") || s.includes("atuacao")) return "combate";
@@ -201,20 +198,10 @@ async function loadData(){
     const entries = await Promise.all(
       PAINEL_CONFIG.sheets.map(async tab => [tab, await loadSheet(tab)])
     );
-
     data = Object.fromEntries(entries);
 
-    console.log("Resumo", data.Resumo);
-    console.log("Primeiro resumo:", data.Resumo[0]);
-    console.log("Chaves:", Object.keys(data.Resumo[0]));
-
-    console.log("Ocorrencias", data.Ocorrencias);
-    console.log("Viaturas", data.Viaturas);
-    console.log("Condutores", data.Condutores);
-    console.log("Municipios", data.Municipios);
-
     render();
-await loadWeather();
+    await loadWeather();
 
     $("#lastUpdate").textContent =
       new Date().toLocaleTimeString("pt-BR",{hour:"2-digit",minute:"2-digit"});
@@ -336,49 +323,23 @@ function render(){
     ["TOTAL DE ÁREAS",munis.length]
   ].map(x => `<div class="area-kpi"><small>${x[0]}</small><b>${x[1]}</b></div>`).join("");
 
-// VIATURAS — distribuição compacta e dinâmica
-const groups = {};
+  // VIATURAS — distribuição compacta e dinâmica
+  const groups = {};
+  vehicles.forEach(v => (groups[v.Local || "Sem local"] ??= []).push(v));
+  const orderedGroups = Object.entries(groups).sort((a,b) => b[1].length - a[1].length);
 
-vehicles.forEach(v => {
-  const local = v.Local || "Sem local";
+  $("#fleetColumns").innerHTML = orderedGroups.map(([loc,vs], index) => `
+    <div class="fleet-col ${index === 0 && vs.length >= 5 ? "fleet-col-large" : ""}">
+      <h3>${esc(loc).toUpperCase()} (${vs.length})</h3>
+      ${vs.map(v => `
+        <div class="vehicle-card ${vehicleClass(v.Status)}">
+          <b>${esc(v.Viatura)}</b>
+          <small>${esc(v.Status)}${v.Condutor ? " • "+esc(v.Condutor) : ""}</small>
+          ${v.Observação ? `<small>${esc(v.Observação)}</small>` : ""}
+        </div>`).join("")}
+    </div>`).join("");
 
-  if(!groups[local]){
-    groups[local] = [];
-  }
-
-  groups[local].push(v);
-});
-
-// Ordena os locais colocando primeiro quem possui mais viaturas
-const orderedGroups = Object.entries(groups)
-  .sort((a,b) => b[1].length - a[1].length);
-
-$("#fleetColumns").innerHTML = orderedGroups.map(([loc,vs], index) => `
-  <div class="fleet-col ${index === 0 && vs.length >= 5 ? "fleet-col-large" : ""}">
-
-    <h3>${esc(loc).toUpperCase()} (${vs.length})</h3>
-
-    ${vs.map(v => `
-      <div class="vehicle-card ${vehicleClass(v.Status)}">
-
-        <b>${esc(v.Viatura)}</b>
-
-        <small>
-          ${esc(v.Status)}
-          ${v.Condutor ? " • " + esc(v.Condutor) : ""}
-        </small>
-
-        ${v.Observação ? `
-          <small>${esc(v.Observação)}</small>
-        ` : ""}
-
-      </div>
-    `).join("")}
-
-  </div>
-`).join("");
-
-// CONDUTORES — adaptativo
+  // CONDUTORES — adaptativo
   const driversBox = $("#driversAdaptive");
   if(driversBox){
     const countEl = $("#driversCount");
