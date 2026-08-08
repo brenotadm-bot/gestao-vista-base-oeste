@@ -353,7 +353,8 @@ vehicles.forEach(v => {
 const orderedGroups = Object.entries(groups)
   .sort((a,b) => b[1].length - a[1].length);
 
-$("#fleetColumns").innerHTML = orderedGroups.map(([loc,vs]) => `
+$("#fleetColumns").innerHTML = orderedGroups.map(([loc,vs], index) => `
+  <div class="fleet-col ${index === 0 && vs.length >= 5 ? "fleet-col-large" : ""}">
   <div class="fleet-col ${vs.length >= 5 ? "fleet-col-large" : ""}">
     
     <h3>${esc(loc).toUpperCase()} (${vs.length})</h3>
