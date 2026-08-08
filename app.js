@@ -400,6 +400,6 @@ function updateClock(){
 applyBranding();
 updateClock();
 setInterval(updateClock,1000);
-setInterval(rotateScreen,PAINEL_CONFIG.rotateMs);
+setInterval(rotateScreen,60000);
 setInterval(loadData,PAINEL_CONFIG.refreshMs);
 loadData();
