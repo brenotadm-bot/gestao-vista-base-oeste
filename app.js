@@ -381,7 +381,7 @@ function render(){
       <td class="status ${statusClass(o.Situação)}">${esc(o.Situação)}</td>
       <td>${esc(o.Tipo)}</td>
       <td>${esc(o.Viatura || "—")}</td>
-      <td>${esc(o.Condutor || "—")}</td>
+      <td>${esc(o.Comandante || "—")}</td>
     </tr>`).join("");
 
   const occTable = $("#occTable")?.closest("table");
