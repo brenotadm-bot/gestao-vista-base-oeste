@@ -1,34 +1,20 @@
-# BASEOESTE V5 COMPLETA
+# Gestão à Vista — Base Oeste
 
-Versão revisada do painel para TV.
+Pacote preparado para GitHub Pages.
 
-## Já configurado
-Google Sheets:
-https://docs.google.com/spreadsheets/d/1uU1T7FggKgG26VgpQwHn4jCtRMRYQdmrTVXlse9VnPI/edit
+Arquivos principais na raiz:
+- index.html
+- style.css
+- app.js
+- config.js
+- dados-fallback.json
 
-Abas:
-- Resumo
-- Ocorrencias
-- Viaturas
-- Condutores
-- Municipios
-- Avisos
+## Publicação
+No GitHub: Settings > Pages > Source: GitHub Actions.
+O workflow em `.github/workflows/static.yml` publica o conteúdo da raiz.
 
-## Correções desta versão
-- Aba Resumo funciona mesmo com título e linhas vazias antes de `Indicador | Valor`.
-- Quantidade de linhas dinâmica para ocorrências, condutores, viaturas e municípios.
-- Condutores mudam automaticamente para 1, 2 ou 3 colunas.
-- Clima automático para Barreiras-BA.
-- Atualização do Google Sheets a cada 2 minutos.
-- Troca de telas a cada 25 segundos.
-- Arte lateral em `imagens/sidebar.png`.
+## Imagem lateral
+O `config.js` procura `imagens/sidebar.png`. Se você já possui essa imagem no repositório, mantenha-a nesse caminho. Se ela não existir, o painel continua funcionando, apenas sem a arte fotográfica lateral.
 
-## Para atualizar no GitHub
-Substitua os arquivos do repositório pelos arquivos desta pasta e faça Commit Changes.
-O Netlify publica automaticamente.
-
-## Para trocar somente a arte lateral no futuro
-Substitua:
-`imagens/sidebar.png`
-
-Não é necessário alterar código.
+## Dados
+O painel tenta carregar o Google Sheets. Se a planilha estiver indisponível, usa `dados-fallback.json`.
