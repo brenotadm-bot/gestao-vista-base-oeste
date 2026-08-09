@@ -120,7 +120,7 @@ function clearError(){
 function summary(name){
   const target = normalizeKey(name);
   const row = (data.Resumo || []).find(r => normalizeKey(r.Indicador) === target);
-  return row ? String(r.Valor ?? "").trim() || "—" : "—";
+  return row ? String(row.Valor ?? "").trim() || "—" : "—";
 }
 
 function statusClass(s){
@@ -454,6 +454,6 @@ applyBranding();
 updateFooterLegend();
 updateClock();
 setInterval(updateClock,1000);
-setInterval(rotateScreen,60000);
+setInterval(rotateScreen,PAINEL_CONFIG.rotateMs || 40000);
 setInterval(loadData,PAINEL_CONFIG.refreshMs);
 loadData();
