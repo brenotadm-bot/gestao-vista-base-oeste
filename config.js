@@ -1,7 +1,7 @@
 window.PAINEL_CONFIG = {
   googleSheetId: "1uU1T7FggKgG26VgpQwHn4jCtRMRYQdmrTVXlse9VnPI",
   refreshMs: 120000,
-  rotateMs: 25000,
+  rotateMs: 40000,
   sheets: ["Resumo","Ocorrencias","Viaturas","Condutores","Municipios","Avisos"],
 
   branding: {

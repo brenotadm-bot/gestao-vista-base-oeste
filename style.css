@@ -234,3 +234,19 @@ table.ultra-table td{
 .vehicle-card .vehicle-name.km-green{color:#55c86a}
 .vehicle-card .vehicle-name.km-orange{color:#ff9f1a}
 .vehicle-card .vehicle-name.km-red{color:#ef3940}
+
+
+/* ===== AJUSTES 09-08-2026: rotação 40s, legenda KM e tela 4 ===== */
+#footerLegend{display:flex;align-items:center;gap:6px;white-space:nowrap}
+#footerLegend .km-legend{font-weight:800;font-size:9px}
+#footerLegend .white-text{color:#fff}
+#footerLegend .green-text{color:#55c86a}
+#footerLegend .orange-text{color:#ff9f1a}
+#footerLegend .red-text{color:#ef3940}
+
+/* Tela 4: nomes e dados dimensionados para TV sem quebrar em excesso */
+.drivers-adaptive.compact .driver-card{padding:5px 9px;grid-template-columns:1.25fr .72fr .78fr 1fr;gap:8px;align-items:center}
+.drivers-adaptive.compact .driver-name{font-size:17px;line-height:1.08;font-weight:900;overflow-wrap:anywhere}
+.drivers-adaptive.compact .driver-vehicle{font-size:19px;line-height:1.05}
+.drivers-adaptive.compact .driver-local{font-size:16px;line-height:1.08}
+.drivers-adaptive.compact .driver-note{font-size:12px;line-height:1.08}

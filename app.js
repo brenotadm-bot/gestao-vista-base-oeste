@@ -120,7 +120,7 @@ function clearError(){
 function summary(name){
   const target = normalizeKey(name);
   const row = (data.Resumo || []).find(r => normalizeKey(r.Indicador) === target);
-  return row ? String(row.Valor ?? "").trim() || "—" : "—";
+  return row ? String(r.Valor ?? "").trim() || "—" : "—";
 }
 
 function statusClass(s){
@@ -428,11 +428,22 @@ function render(){
   ].map(x => `<div class="big-kpi"><small>${x[0]}</small><b>${x[1]}</b></div>`).join("");
 }
 
+function updateFooterLegend(){
+  const el = $("#footerLegend");
+  if(!el) return;
+  if(currentScreen === 2){
+    el.innerHTML = `<span class="km-legend white-text">&gt; 1.000 branco</span><span class="sep">|</span><span class="km-legend green-text">501–1.000 verde</span><span class="sep">|</span><span class="km-legend orange-text">1–500 laranja</span><span class="sep">|</span><span class="km-legend red-text">≤ 0 vermelho</span>`;
+  } else {
+    el.innerHTML = `<span class="legend-dot red"></span> EM ATUAÇÃO <span class="legend-dot yellow"></span> FINALIZADA <span class="legend-dot green"></span> MONITORAMENTO`;
+  }
+}
+
 function rotateScreen(){
   screens[currentScreen].classList.remove("active");
   currentScreen = (currentScreen + 1) % screens.length;
   screens[currentScreen].classList.add("active");
   $("#pager").textContent = `TELA ${currentScreen + 1} / ${screens.length}`;
+  updateFooterLegend();
 }
 
 function updateClock(){
@@ -440,6 +451,7 @@ function updateClock(){
 }
 
 applyBranding();
+updateFooterLegend();
 updateClock();
 setInterval(updateClock,1000);
 setInterval(rotateScreen,60000);
