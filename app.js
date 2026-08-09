@@ -237,10 +237,34 @@ async function loadWeather(){
 
 async function loadData(){
   try{
-    const entries = await Promise.all(
+    // Carrega cada aba de forma independente. Uma falha em outra aba não impede
+    // que Viaturas/Condutores recebam os dados mais recentes da planilha.
+    const results = await Promise.allSettled(
       PAINEL_CONFIG.sheets.map(async tab => [tab, await loadSheet(tab)])
     );
-    data = Object.fromEntries(entries);
+
+    let fallback = {};
+    const failedTabs = [];
+    for (let i = 0; i < results.length; i++) {
+      const tab = PAINEL_CONFIG.sheets[i];
+      const result = results[i];
+      if (result.status === "fulfilled") {
+        const [name, rows] = result.value;
+        data[name] = rows;
+      } else {
+        failedTabs.push(tab);
+      }
+    }
+
+    if (failedTabs.length) {
+      try {
+        const fr = await fetch(`dados-fallback.json?_=${Date.now()}`, {cache:"no-store"});
+        if (fr.ok) fallback = await fr.json();
+      } catch (_) {}
+      failedTabs.forEach(tab => {
+        if (!Array.isArray(data[tab])) data[tab] = fallback[tab] || [];
+      });
+    }
 
     render();
     await loadWeather();
@@ -269,7 +293,23 @@ async function loadData(){
 function render(){
   const occ = data.Ocorrencias || [];
   const vehicles = data.Viaturas || [];
-  const drivers = data.Condutores || [];
+  // A aba Viaturas é a fonte principal para Condutor, Viatura e Local.
+  // Assim, ao mover uma viatura na planilha, a Tela 4 muda junto sem precisar
+  // editar também a aba Condutores. Observações específicas da aba Condutores
+  // continuam sendo aproveitadas quando existirem.
+  const driverNotes = new Map((data.Condutores || []).map(d => [normalizeKey(d.Viatura), d]));
+  const drivers = vehicles
+    .filter(v => String(v.Condutor || "").trim())
+    .map(v => {
+      const extra = driverNotes.get(normalizeKey(v.Viatura)) || {};
+      return {
+        Condutor: v.Condutor,
+        Viatura: v.Viatura,
+        Local: v.Local,
+        Observação: v.Observação || extra.Observação || ""
+      };
+    })
+    .sort((a,b) => String(a.Viatura).localeCompare(String(b.Viatura), "pt-BR", {numeric:true}));
   const munis = (data.Municipios || []).filter(
     m => normalizeKey(m["Pode atuar?"]) !== "nao"
   );
@@ -368,6 +408,9 @@ function render(){
   // VIATURAS — distribuição compacta e dinâmica
   const groups = {};
   vehicles.forEach(v => (groups[v.Local || "Sem local"] ??= []).push(v));
+  Object.values(groups).forEach(list => list.sort((a,b) =>
+    String(a.Viatura).localeCompare(String(b.Viatura), "pt-BR", {numeric:true})
+  ));
   const orderedGroups = Object.entries(groups).sort((a,b) => b[1].length - a[1].length);
 
   $("#fleetColumns").innerHTML = orderedGroups.map(([loc,vs], index) => `
