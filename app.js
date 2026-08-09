@@ -438,7 +438,18 @@ function render(){
     driversBox.classList.toggle("compact",drivers.length > 10);
     driversBox.classList.toggle("ultra",drivers.length > 20);
 
-    driversBox.innerHTML = drivers.map(d => `
+    // Reordena apenas a exibição para preencher cada coluna de cima para baixo.
+    // Ex.: com 12 condutores: 1–6 na coluna esquerda e 7–12 na coluna direita.
+    const rowsPerCol = Math.ceil(drivers.length / cols);
+    const driversColumnOrder = [];
+    for(let row = 0; row < rowsPerCol; row++){
+      for(let col = 0; col < cols; col++){
+        const idx = col * rowsPerCol + row;
+        if(idx < drivers.length) driversColumnOrder.push(drivers[idx]);
+      }
+    }
+
+    driversBox.innerHTML = driversColumnOrder.map(d => `
       <div class="driver-card">
         <div class="driver-name">${esc(d.Condutor)}</div>
         <div class="driver-vehicle">${esc(d.Viatura)}</div>
