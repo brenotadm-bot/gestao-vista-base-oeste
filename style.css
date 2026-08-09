@@ -226,3 +226,11 @@ table.ultra-table td{
 .driver-note{font-size:20px}
 .drivers-adaptive.compact .driver-card{padding:6px 9px;font-size:11px}
 .drivers-adaptive.ultra .driver-card{padding:4px 7px;font-size:9px;grid-template-columns:1.15fr .8fr .8fr 1fr}
+
+
+/* ===== ALERTA DE QUILOMETRAGEM — TELA 3 =====
+   > 1000 km: branco | 501–1000 km: verde | 1–500 km: laranja | <= 0 km: vermelho */
+.vehicle-card .vehicle-name.km-normal{color:var(--white)}
+.vehicle-card .vehicle-name.km-green{color:#55c86a}
+.vehicle-card .vehicle-name.km-orange{color:#ff9f1a}
+.vehicle-card .vehicle-name.km-red{color:#ef3940}

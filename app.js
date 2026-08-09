@@ -120,7 +120,7 @@ function clearError(){
 function summary(name){
   const target = normalizeKey(name);
   const row = (data.Resumo || []).find(r => normalizeKey(r.Indicador) === target);
-  return row ? String(row.Valor ?? "").trim() || "—" : "—";
+  return row ? String(r.Valor ?? "").trim() || "—" : "—";
 }
 
 function statusClass(s){
@@ -137,6 +137,48 @@ function vehicleClass(s){
   if(s.includes("desloc")) return "move";
   if(s.includes("base")) return "base";
   return "op";
+}
+
+
+function parseKmValue(v){
+  if(v === null || v === undefined) return null;
+  let s = String(v).trim();
+  if(!s || s === "—" || s === "-") return null;
+
+  // Aceita formatos como 1.250, 1250, 500 km e -120.
+  s = s.replace(/\s*km\s*/gi,"").replace(/\s/g,"");
+  if(s.includes(",") && s.includes(".")){
+    s = s.replace(/\./g,"").replace(",",".");
+  }else if(s.includes(",")){
+    s = s.replace(",",".");
+  }else if(/^-?\d{1,3}(\.\d{3})+$/.test(s)){
+    s = s.replace(/\./g,"");
+  }
+
+  const n = Number(s.replace(/[^\d.-]/g,""));
+  return Number.isFinite(n) ? n : null;
+}
+
+function getKmRestante(v){
+  const wanted = [
+    "km restante","km restantes","quilometragem restante",
+    "km para revisao","km p revisao","saldo km","km"
+  ];
+  for(const [key,value] of Object.entries(v || {})){
+    if(wanted.includes(normalizeKey(key))){
+      return parseKmValue(value);
+    }
+  }
+  return null;
+}
+
+function kmVehicleClass(v){
+  const km = getKmRestante(v);
+  if(km === null) return "km-normal";
+  if(km <= 0) return "km-red";
+  if(km <= 500) return "km-orange";
+  if(km <= 1000) return "km-green";
+  return "km-normal";
 }
 
 function applyBranding(){
@@ -333,7 +375,7 @@ function render(){
       <h3>${esc(loc).toUpperCase()} (${vs.length})</h3>
       ${vs.map(v => `
         <div class="vehicle-card ${vehicleClass(v.Status)}">
-          <b>${esc(v.Viatura)}</b>
+          <b class="vehicle-name ${kmVehicleClass(v)}">${esc(v.Viatura)}</b>
           <small>${esc(v.Status)}${v.Condutor ? " • "+esc(v.Condutor) : ""}</small>
           ${v.Observação ? `<small>${esc(v.Observação)}</small>` : ""}
         </div>`).join("")}
