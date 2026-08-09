@@ -120,7 +120,7 @@ function clearError(){
 function summary(name){
   const target = normalizeKey(name);
   const row = (data.Resumo || []).find(r => normalizeKey(r.Indicador) === target);
-  return row ? String(r.Valor ?? "").trim() || "—" : "—";
+  return row ? String(row.Valor ?? "").trim() || "—" : "—";
 }
 
 function statusClass(s){
